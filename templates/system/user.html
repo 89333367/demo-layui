@@ -1,0 +1,49 @@
+<!-- 表格上方的查询部分 -->
+<div class="layui-fluid">
+    <form class="layui-form layui-clear-space" lay-filter="dom_formSearch">
+        <div class="layui-form-item">
+            <input type="text" name="username" placeholder="查找用户名" class="layui-input layui-input-inline">
+            <input type="text" name="email" lay-verify="email" placeholder="查找邮箱" autocomplete="off"
+                class="layui-input layui-input-inline">
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <button type="button" class="layui-btn" lay-submit lay-filter="dom_formSearchSubmit">查询</button>
+                <button type="reset" class="layui-btn">重置</button>
+                <button type="button" class="layui-btn" lay-on="dom_formSearchExpandSearch">展开</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 数据表格 -->
+<div class="layui-fluid">
+    <table class="layui-hide" lay-filter="dom_datatable"></table>
+</div>
+
+<!-- 表格的操作部分 -->
+<script type="text/html" lay-filter="tpl_operation">
+<div class="layui-clear-space">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</div>
+</script>
+
+<!-- 数据表单部分 -->
+<div class="layui-fluid layui-padding-2 css_display-none" lay-filter="dom_formData">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+    </form>
+</div>

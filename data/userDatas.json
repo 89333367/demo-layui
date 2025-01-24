@@ -1,0 +1,78 @@
+{
+    "status": 0,
+    "data": {
+        "total": 110,
+        "records": [
+            {
+                "id": "1",
+                "username": "张三",
+                "email": "zhangsan@email.com",
+                "sex": "1",
+                "createTime": "2016-10-14 10:10:59"
+            },
+            {
+                "id": "2",
+                "username": "李四",
+                "email": "lisi@email.com",
+                "sex": "1",
+                "createTime": "2016-10-15 09:46:59"
+            },
+            {
+                "id": "3",
+                "username": "王五",
+                "email": "wangwu@email.com",
+                "sex": "0",
+                "createTime": "2016-10-16 10:09:59"
+            },
+            {
+                "id": "4",
+                "username": "赵六",
+                "email": "zhaoliu@email.com",
+                "sex": "0",
+                "createTime": "2016-10-17 11:46:59"
+            },
+            {
+                "id": "5",
+                "username": "蓁蓁",
+                "email": "zhenzhen@email.com",
+                "sex": "0",
+                "createTime": "2017-12-14 10:46:59"
+            },
+            {
+                "id": "6",
+                "username": "张三2",
+                "email": "zhangsan2@email.com",
+                "sex": "1",
+                "createTime": "2016-10-14 10:10:59"
+            },
+            {
+                "id": "7",
+                "username": "李四2",
+                "email": "lisi2@email.com",
+                "sex": "1",
+                "createTime": "2016-10-15 09:46:59"
+            },
+            {
+                "id": "8",
+                "username": "王五2",
+                "email": "wangwu2@email.com",
+                "sex": "0",
+                "createTime": "2016-10-16 10:09:59"
+            },
+            {
+                "id": "9",
+                "username": "赵六2",
+                "email": "zhaoliu2@email.com",
+                "sex": "0",
+                "createTime": "2016-10-17 11:46:59"
+            },
+            {
+                "id": "10",
+                "username": "爱爱",
+                "email": "aiai@email.com",
+                "sex": "0",
+                "createTime": "2016-10-15 09:46:05"
+            }
+        ]
+    }
+}

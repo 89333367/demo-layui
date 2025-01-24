@@ -1,0 +1,39 @@
+[
+    {
+        "title": "系统管理",
+        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-set'></i>",
+        "child": [
+            {
+                "title": "用户管理",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-user'></i>",
+                "href": "#/system/user"
+            },
+            {
+                "title": "角色管理",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-vercode'></i>",
+                "href": "#/system/role"
+            },
+            {
+                "title": "权限管理",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-lock'></i>",
+                "href": "#/system/resource"
+            }
+        ]
+    },
+    {
+        "title": "示例代码",
+        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-read'></i>",
+        "child": [
+            {
+                "title": "仪表盘示例",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-github'></i>",
+                "href": "#/demo/dashboard"
+            },
+            {
+                "title": "数据表格示例",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-table'></i>",
+                "href": "#/demo/datatable"
+            }
+        ]
+    }
+]

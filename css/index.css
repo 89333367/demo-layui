@@ -1,0 +1,64 @@
+/**
+ * 鼠标移动到上面展示手的样式
+*/
+.css_cursor-pointer {
+  cursor: pointer;
+}
+
+/**
+ * 隐藏元素
+*/
+.css_display-none {
+  display: none;
+}
+
+/**
+ * 底部文字居中
+ */
+.css_body-footer {
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 16px;
+  box-shadow: -1px 0 4px rgb(0 0 0 / 12%);
+  background-color: #fafafa;
+}
+
+/**
+ * 菜单图标样式
+ */
+.css_menu-icon {
+  font-size: 15px;
+  color: #f2f5f7;
+  margin-right: 8px;
+}
+
+/**
+ * body上方距离
+ */
+.css_body-content {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* 设置高度设置为40px，隐藏溢出内容 */
+.css_hide-overflow-content {
+  height: 40px;
+  overflow: hidden;
+}
+
+/**
+ * 折叠菜单
+*/
+.css_collapse .layui-layout-admin .layui-side,
+.css_collapse .layui-layout-admin .layui-header {
+  left: -200px;
+}
+
+/**
+ * 展开菜单
+ */
+.css_collapse .layui-layout-admin .layui-footer,
+.css_collapse .layui-layout-admin .layui-body {
+  left: 0px;
+}

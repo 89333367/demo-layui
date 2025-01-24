@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <title>平台</title>
+
+    <link href="lib/layui/css/layui.css" rel="stylesheet" />
+    <script src="lib/layui/layui.js"></script>
+
+    <!-- 让 IE8/9 支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="lib/html5shiv.min.js"></script>
+    <script src="lib/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo layui-hide-xs layui-bg-black">平台</div>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item layui-show-xs-inline-block css_cursor-pointer" lay-on="dom_leftMenuCollapse">
+                    <i class="layui-icon layui-icon-shrink-right" style="font-size: large;" title="折叠菜单"></i>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-friends css_menu-icon"></i>管理员</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#/logout">登出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="dom_leftMenu">
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <div class="css_body-content"></div>
+            <div class="css_body-footer"></div>
+        </div>
+    </div>
+
+    <script>
+        layui.config({
+            version: '3.0.0', // 用于更新模块缓存
+            base: 'modules/' // 设定扩展模块的所在目录
+        });
+
+        layui.use('index');//使用index模块
+    </script>
+</body>
+
+</html>
