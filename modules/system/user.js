@@ -28,7 +28,7 @@ layui.define(['common'], function (exports) {
         form.render();
 
         table.render({
-            url: 'data/userDatas.json', // 此处为静态模拟数据，实际使用时需换成真实接口
+            url: 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
             method: 'get',
             cols: [[
                 { field: 'id', minWidth: 80, title: 'ID', sort: true },
@@ -47,7 +47,7 @@ layui.define(['common'], function (exports) {
                     }
                 },
                 { field: 'createTime', title: '创建时间', minWidth: 180, sort: true },
-                { fixed: 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
+                { fixed: $(window).width() <= 768 ? null : 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
             ]],
             defaultToolbar: [
                 {
