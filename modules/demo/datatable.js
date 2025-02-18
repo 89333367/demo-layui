@@ -72,8 +72,8 @@ layui.define(['common'], function (exports) {
             url: 'data/datatable.json', // 此处为静态模拟数据，实际使用时需换成真实接口
             method: 'get',
             cols: [[
-                { type: 'checkbox', fixed: 'left' },
-                { field: 'id', fixed: 'left', minWidth: 80, title: 'ID', sort: true },
+                { type: 'checkbox', fixed: $(window).width() <= 768 ? null : 'left' },
+                { field: 'id', fixed: $(window).width() <= 768 ? null : 'left', minWidth: 80, title: 'ID', sort: true },
                 { field: 'username', minWidth: 80, title: '用户' },
                 { field: 'email', title: '邮箱', hide: true, minWidth: 150 },
                 { field: 'sex', minWidth: 80, title: '性别', sort: true },
@@ -82,7 +82,7 @@ layui.define(['common'], function (exports) {
                 { field: 'checkin', title: '打卡', minWidth: 100, sort: true },
                 { field: 'ip', title: 'IP', minWidth: 150 },
                 { field: 'joinTime', title: '加入时间', minWidth: 180 },
-                { fixed: 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
+                { fixed: $(window).width() <= 768 ? null : 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
             ]],
             defaultToolbar: [
                 {

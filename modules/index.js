@@ -30,8 +30,10 @@ layui.define(['common', 'menu'], function (exports) {
         }
     });
 
+    // 页脚版本号
     $('.css_body-footer').html('Copyright © 2025 LayUI ( ' + config.v + ' ) ');
 
+    // 底部Top工具
     util.fixbar({
         margin: 1,
         default: true
