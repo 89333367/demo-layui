@@ -47,7 +47,7 @@ layui.define(['common'], function (exports) {
                     }
                 },
                 { field: 'createTime', title: '创建时间', minWidth: 180, sort: true },
-                { fixed: $(window).width() <= 768 ? null : 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
+                { fixed: 'right', title: '操作', minWidth: 125, templet: $('script[lay-filter="tpl_operation"]') }
             ]],
             defaultToolbar: [
                 {

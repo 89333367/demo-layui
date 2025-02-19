@@ -47,6 +47,7 @@ layui.define(['common'], function (exports) {
     util.on({
         // 折叠左侧菜单按钮事件
         dom_leftMenuCollapse: function () {
+            console.debug('点击了菜单折叠按钮');
             $('body').toggleClass('css_collapse');
             if ($('body').hasClass('css_collapse')) {
                 $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
@@ -57,8 +58,8 @@ layui.define(['common'], function (exports) {
     });
 
     // 根据窗口宽度动态展示或隐藏菜单
-    $(window).resize(layui.debounce(function (e) {
-        console.debug('当前窗口宽度', $(window).width());
+    var debounce = layui.debounce(function (e) {
+        console.debug('触发窗口大小改变事件，需要重新判断是否展示菜单', '当前窗口宽度', $(window).width());
         if ($(window).width() <= 768) {
             $('body').addClass('css_collapse');
             $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
@@ -66,8 +67,9 @@ layui.define(['common'], function (exports) {
             $('body').removeClass('css_collapse');
             $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
         }
-    }, 10));
-    $(window).resize();// 页面加载后调用一次，避免菜单未隐藏或者未展示
+    }, 10);
+    debounce();
+    $(window).resize(debounce);
 
     var api = {};
     exports('menu', api);

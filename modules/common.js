@@ -106,16 +106,17 @@ layui.define(function (exports) {
     $(window).resize(layui.debounce(function (e) {
         var dt = table.getOptions('datatable');
         if (dt) {
+            console.debug('窗口大小变化后，重置表格的固定列属性');
             $.each(dt.cols, function (i, colGroup) {
                 $.each(colGroup, function (ii, col) {
                     if (!lay.hasOwn(col, '_fixed')) {
                         col._fixed = col.fixed;// 记录一下原来的固定属性值
                     }
                     if (lay.hasOwn(col, 'fixed')) {
-                        col.fixed = $(window).width() > 768 ? col._fixed : null;// 窗口宽度大于768就使用固定值，否则即使用户设置了固定属性，也会被重置为null
+                        col.fixed = $(window).width() > 768 ? col._fixed : false;// 窗口宽度大于768就使用固定值，否则即使用户设置了固定属性，也会被重置为null
                     }
                 });
-            })
+            });
             table.reload('datatable');
         }
     }, 500));
