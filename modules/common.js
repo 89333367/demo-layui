@@ -51,7 +51,7 @@ layui.define(function (exports) {
         height: function () {
             return $('.layui-side').height() - $('.layui-table-tool').height() - $('.css_body-footer').height();
         },
-        size: $(window).width() <= 768 ? 'sm' : 'md',//sm|md|lg
+        //size: $(window).width() <= 768 ? 'sm' : 'md',//sm|md|lg
         before: function (options) {
             console.debug('当前实例属性配置项', options);
             //options.where.abc = 123; // 修改或额外追加 where 属性
@@ -102,6 +102,23 @@ layui.define(function (exports) {
             }
         }, true);
     });
+    // 窗口大小变化后，重置表格的固定列属性
+    $(window).resize(layui.debounce(function (e) {
+        var dt = table.getOptions('datatable');
+        if (dt) {
+            $.each(dt.cols, function (i, colGroup) {
+                $.each(colGroup, function (ii, col) {
+                    if (!lay.hasOwn(col, '_fixed')) {
+                        col._fixed = col.fixed;// 记录一下原来的固定属性值
+                    }
+                    if (lay.hasOwn(col, 'fixed')) {
+                        col.fixed = $(window).width() > 768 ? col._fixed : null;// 窗口宽度大于768就使用固定值，否则即使用户设置了固定属性，也会被重置为null
+                    }
+                });
+            })
+            table.reload('datatable');
+        }
+    }, 500));
 
     var api = {
         /**
