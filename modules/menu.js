@@ -2,6 +2,7 @@ layui.define(['common'], function (exports) {
     console.debug('加载 menu 模块');
 
     var $ = layui.$;
+    var util = layui.util;
     var element = layui.element;
 
     var common = layui.common;
@@ -41,6 +42,35 @@ layui.define(['common'], function (exports) {
                 location.hash = href;
             }
         });
+    });
+
+    util.on({
+        // 折叠左侧菜单按钮事件
+        dom_leftMenuCollapse: function () {
+            $('body').toggleClass('css_collapse');
+            if ($('body').hasClass('css_collapse')) {
+                $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+            } else {
+                $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
+            }
+        }
+    });
+
+    // 根据窗口宽度动态展示或隐藏菜单
+    var resizeWindow = function () {
+        console.debug('当前窗口宽度', $(window).width());
+        if ($(window).width() <= 768) {
+            $('body').addClass('css_collapse');
+            $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+        } else {
+            $('body').removeClass('css_collapse');
+            $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
+        }
+    };
+    resizeWindow();
+    // 根据窗口宽度动态展示或隐藏菜单
+    $(window).resize(function () {
+        resizeWindow();
     });
 
     var api = {};

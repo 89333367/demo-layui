@@ -1,5 +1,16 @@
 [
     {
+        "title": "主页",
+        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-home'></i>",
+        "child": [
+            {
+                "title": "更新日志",
+                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-list'></i>",
+                "href": "#/home/log"
+            }
+        ]
+    },
+    {
         "title": "系统管理",
         "iconDom": "<i class='layui-icon css_menu-icon layui-icon-set'></i>",
         "child": [
