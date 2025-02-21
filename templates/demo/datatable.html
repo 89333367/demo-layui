@@ -7,27 +7,43 @@
     <blockquote class="layui-elem-quote">
         数据表格示例
     </blockquote>
-    <form class="layui-form layui-clear-space" lay-filter="dom_formSearch">
+    <form class="layui-form" lay-filter="dom_formSearch">
         <div class="layui-form-item">
-            <input type="text" name="id" placeholder="查找ID" class="layui-input layui-input-inline">
-            <input type="text" name="username" placeholder="查找用户" class="layui-input layui-input-inline">
-            <input type="text" name="id" placeholder="查找ID" class="layui-input layui-input-inline">
-            <input type="text" name="username" placeholder="查找用户" class="layui-input layui-input-inline">
-            <input type="text" name="id" placeholder="查找ID" class="layui-input layui-input-inline">
-            <input type="text" name="username" placeholder="查找用户" class="layui-input layui-input-inline">
+            <div class="layui-inline">
+                <input type="text" name="id" placeholder="查找ID" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="username" placeholder="查找用户" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="a" placeholder="查找ID" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="b" placeholder="查找用户" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="c" placeholder="查找ID" class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="d" placeholder="查找用户" class="layui-input">
+            </div>
             <div class="layui-inline" lay-filter="dom_datetimerange">
-                <input type="text" autocomplete="off" class="layui-input layui-input-inline" placeholder="开始时间"
-                    lay-filter="dom_datetimerange_start" name="startTime">
-                <input type="text" autocomplete="off" class="layui-input layui-input-inline" placeholder="结束时间"
-                    lay-filter="dom_datetimerange_end" name="endTime">
+                <div class="layui-inline">
+                    <input type="text" autocomplete="off" class="layui-input" placeholder="开始时间"
+                        lay-filter="dom_datetimerange_start" name="startTime">
+                </div>
+                <div class="layui-inline">
+                    <input type="text" autocomplete="off" class="layui-input" placeholder="结束时间"
+                        lay-filter="dom_datetimerange_end" name="endTime">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <button type="button" class="layui-btn" lay-submit lay-filter="dom_formSearchSubmit">查询</button>
-                <button type="reset" class="layui-btn">重置</button>
-                <button type="button" class="layui-btn" lay-on="dom_formSearchExpandSearch">展开</button>
-            </div>
+            <button type="button" class="layui-btn layui-btn-primary layui-border-green" lay-submit
+                lay-filter="dom_formSearchSubmit">查询</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-border-blue">重置</button>
+            <button type="button" class="layui-btn layui-btn-primary layui-border-purple"
+                lay-on="dom_formSearchExpandSearch">展开</button>
         </div>
     </form>
 </div>
