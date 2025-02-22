@@ -93,20 +93,22 @@ layui.define(function (exports) {
     });
     // 窗口大小变化后，重置表格的fixed属性
     $(window).resize(layui.debounce(function (e) {
-        var dt = table.getOptions('datatable');
-        if (dt) {
-            console.debug('窗口大小变化后，重置表格的固定列属性');
-            $.each(dt.cols, function (i, colGroup) {
-                $.each(colGroup, function (ii, col) {
-                    if (!lay.hasOwn(col, '_fixed')) {
-                        col._fixed = col.fixed;// 记录一下用户设置的fixed值
-                    }
-                    if (lay.hasOwn(col, 'fixed')) {
-                        col.fixed = $(window).width() > 768 ? col._fixed : false;// 窗口宽度大于768就使用用户提供的fixed值，否则即使用户设置了fixed值，也会被重置为false
-                    }
+        if ($('table[lay-filter="dom_datatable"]')) {
+            var dt = table.getOptions('datatable');
+            if (dt) {
+                console.debug('窗口大小变化后，重置表格的固定列属性');
+                $.each(dt.cols, function (i, colGroup) {
+                    $.each(colGroup, function (ii, col) {
+                        if (!lay.hasOwn(col, '_fixed')) {
+                            col._fixed = col.fixed;// 记录一下用户设置的fixed值
+                        }
+                        if (lay.hasOwn(col, 'fixed')) {
+                            col.fixed = $(window).width() > 768 ? col._fixed : false;// 窗口宽度大于768就使用用户提供的fixed值，否则即使用户设置了fixed值，也会被重置为false
+                        }
+                    });
                 });
-            });
-            table.reload('datatable');
+                table.reload('datatable');
+            }
         }
     }, 1000));
 
