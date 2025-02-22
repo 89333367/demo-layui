@@ -1,4 +1,4 @@
-layui.define(['common'], function (exports) {
+layui.define(['conf', 'common'], function (exports) {
     var modulePath = '/system/user';
     console.debug('加载', modulePath, '模块');
 
@@ -11,6 +11,7 @@ layui.define(['common'], function (exports) {
     var laydate = layui.laydate;
 
     var common = layui.common;
+    var conf = layui.conf;
 
     common.renderBodyTpl(modulePath, {}, function (str) {
 
@@ -65,7 +66,7 @@ layui.define(['common'], function (exports) {
         });
 
         table.render({
-            url: common.preUrl() + 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
+            url: conf.preUrl() + 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
             method: 'get',
             cols: [[
                 { field: 'id', minWidth: 80, title: 'ID', sort: true },

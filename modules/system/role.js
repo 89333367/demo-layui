@@ -1,4 +1,4 @@
-layui.define(['common'], function (exports) {
+layui.define(['conf', 'common'], function (exports) {
     var modulePath = '/system/role';
     console.debug('加载', modulePath, '模块');
 
@@ -11,6 +11,7 @@ layui.define(['common'], function (exports) {
     var laydate = layui.laydate;
 
     var common = layui.common;
+    var conf = layui.conf;
 
     common.renderBodyTpl(modulePath, {}, function (str) {
 

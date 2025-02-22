@@ -1,4 +1,4 @@
-layui.define(['common'], function (exports) {
+layui.define(['conf', 'common'], function (exports) {
     console.debug('加载 menu 模块');
 
     var $ = layui.$;
@@ -6,6 +6,7 @@ layui.define(['common'], function (exports) {
     var element = layui.element;
 
     var common = layui.common;
+    var conf = layui.conf;
 
     // 绑定左侧菜单事件
     element.on('nav(dom_leftMenu)', function (elem) {
@@ -18,7 +19,7 @@ layui.define(['common'], function (exports) {
     });
 
     // 动态加载左侧菜单
-    $.getJSON(common.preUrl() + 'data/menu.json', function (data) {
+    $.getJSON(conf.preUrl() + 'data/menu.json', function (data) {
         common.renderTpl('menu', data, function (str) {
             var dom_leftMenu = $('ul[lay-filter="dom_leftMenu"]');
             dom_leftMenu.html(str);

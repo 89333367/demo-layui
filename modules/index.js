@@ -1,10 +1,11 @@
-layui.define(['common', 'menu'], function (exports) {
+layui.define(['conf', 'common', 'menu'], function (exports) {
     console.debug('加载 index 模块');
 
     var $ = layui.$;
     var util = layui.util;
 
     var config = layui.config();
+    var conf = layui.conf;
 
     // 页脚版本号
     $('.css_body-footer').html('Copyright © 2025 LayUI ( ' + config.v + ' ) ');
