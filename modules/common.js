@@ -117,6 +117,8 @@ layui.define(function (exports) {
          * 2. 渲染搜索表单
          */
         renderCommon: function () {
+            var loadIndex = layer.load(0);
+
             // 渲染表单
             form.render();
 
@@ -129,21 +131,23 @@ layui.define(function (exports) {
             if ($('table[lay-filter="dom_datatable"]')) {
                 // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
                 var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
-                if (dom_formSearch && dom_formSearch.height() > 110) {
-                    var dom_formSearchExpandSearch = $('button[lay-on="dom_formSearchExpandSearch"]');
-                    dom_formSearchExpandSearch.show();
-                    var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
-                    searchFormItem0.addClass('css_hide-overflow-content');
-                    dom_formSearchExpandSearch.click(function () {
-                        searchFormItem0.toggleClass('css_hide-overflow-content');
-                        if (searchFormItem0.hasClass('css_hide-overflow-content')) {
-                            $(this).text('展开');
-                        } else {
-                            $(this).text('收缩');
-                        }
-                    });
-                } else if (dom_formSearch) {
-                    dom_formSearchExpandSearch.hide();
+                var dom_formSearchExpandSearch = $('button[lay-on="dom_formSearchExpandSearch"]');
+                if (dom_formSearch && dom_formSearchExpandSearch) {
+                    if (dom_formSearch.height() > 110) {
+                        dom_formSearchExpandSearch.show();
+                        var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
+                        searchFormItem0.addClass('css_hide-overflow-content');
+                        dom_formSearchExpandSearch.click(function () {
+                            searchFormItem0.toggleClass('css_hide-overflow-content');
+                            if (searchFormItem0.hasClass('css_hide-overflow-content')) {
+                                $(this).text('展开');
+                            } else {
+                                $(this).text('收缩');
+                            }
+                        });
+                    } else if (dom_formSearch) {
+                        dom_formSearchExpandSearch.hide();
+                    }
                 }
 
                 // 全局点击查询按钮后，直接滚动到页面最下方
@@ -152,6 +156,8 @@ layui.define(function (exports) {
                     $('html, body').scrollTop($(document).height());
                 });
             }
+
+            layer.close(loadIndex);
         },
         /**
          * 获取模版渲染后的结果
@@ -160,6 +166,7 @@ layui.define(function (exports) {
          * @param {*} callback 回调函数，调用方接收渲染后的结果
          */
         renderTpl: function (route, data, callback) {
+            var loadIndex = layer.load(0);
             console.debug('renderTpl参数', arguments);
             var tplUrl = 'templates/' + route.replace(/^\/+/, '') + '.html';
             console.debug('准备加载模版', tplUrl, data);
@@ -169,6 +176,8 @@ layui.define(function (exports) {
                     console.debug('渲染后的结果', str);
 
                     callback(str);//将渲染后的结果返回给调用方
+
+                    layer.close(loadIndex);
                 });
             });
         },
@@ -179,6 +188,7 @@ layui.define(function (exports) {
          * @param {*} callback 
          */
         renderBodyTpl: function (route, data, callback) {
+            var loadIndex = layer.load(0);
             var that = this;
 
             this.renderTpl(route, data, function (str) {
@@ -187,6 +197,8 @@ layui.define(function (exports) {
                 that.renderCommon();
 
                 callback(str);//回调
+
+                layer.close(loadIndex);
             });
         }
     };

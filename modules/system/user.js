@@ -14,6 +14,47 @@ layui.define(['common'], function (exports) {
 
     common.renderBodyTpl(modulePath, {}, function (str) {
 
+        laydate.render({
+            elem: 'div[lay-filter="dom_datetimerange"]',
+            range: ['input[lay-filter="dom_datetimerange_start"]', 'input[lay-filter="dom_datetimerange_end"]'],
+            rangeLinked: true,
+            type: 'datetime',
+            fullPanel: true,
+            weekStart: 1, // 设置周一为起始周
+            shortcuts: [
+                {
+                    text: "昨天",
+                    value: function () {
+                        var now = new Date();
+                        now.setDate(now.getDate() - 1); // 获取昨天的日期
+                        var a = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+                        var b = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+                        return [a, b];
+                    }
+                },
+                {
+                    text: "今天",
+                    value: function () {
+                        var now = new Date();
+                        var a = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+                        var b = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+                        return [a, b];
+                    }
+                },
+                {
+                    text: "本月",
+                    value: function () {
+                        var now = new Date();
+                        var year = now.getFullYear();
+                        var month = now.getMonth();
+                        var a = new Date(year, month, 1, 0, 0, 0); // 本月第一天0点0分0秒
+                        var b = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+                        return [a, b];
+                    }
+                }
+            ]
+        });
+
         form.on('submit(dom_formSearchSubmit)', function (data) {
             var field = data.field; // 获取表单字段值
             console.debug('表单数据', field);
@@ -21,11 +62,7 @@ layui.define(['common'], function (exports) {
             table.reloadData('datatable', {
                 where: field
             });
-
-            // 直接滚动到页面最下方
-            $('html, body').scrollTop($(document).height());
         });
-        form.render();
 
         table.render({
             url: 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
