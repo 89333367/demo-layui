@@ -131,27 +131,36 @@ layui.define(function (exports) {
             //只要页面有lay-filter="dom_breadcrumb"的面包屑，就会自动渲染
             element.render('breadcrumb', 'dom_breadcrumb');
 
-            // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
-            var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
-            if (dom_formSearch && dom_formSearch.height() > 110) {
-                $('button[lay-on="dom_formSearchExpandSearch"]').show();
+            // 如果页面中有 dom_datatable 的表格，那么就会自动渲染搜索表单，并且点击查询按钮后，会自动滚动到页面最下方
+            if ($('table[lay-filter="dom_datatable"]').length) {
+                // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
+                var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
+                if (dom_formSearch && dom_formSearch.height() > 110) {
+                    $('button[lay-on="dom_formSearchExpandSearch"]').show();
 
-                var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
-                searchFormItem0.addClass('css_hide-overflow-content');
+                    var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
+                    searchFormItem0.addClass('css_hide-overflow-content');
 
-                util.on({
-                    'dom_formSearchExpandSearch': function () {
-                        searchFormItem0.toggleClass('css_hide-overflow-content');
+                    util.on({
+                        'dom_formSearchExpandSearch': function () {
+                            searchFormItem0.toggleClass('css_hide-overflow-content');
 
-                        if (searchFormItem0.hasClass('css_hide-overflow-content')) {
-                            $(this).text('展开');
-                        } else {
-                            $(this).text('收缩');
+                            if (searchFormItem0.hasClass('css_hide-overflow-content')) {
+                                $(this).text('展开');
+                            } else {
+                                $(this).text('收缩');
+                            }
                         }
-                    }
+                    });
+                } else if (dom_formSearch) {
+                    $('button[lay-on="dom_formSearchExpandSearch"]').hide();
+                }
+
+                // 全局点击查询按钮后，直接滚动到页面最下方
+                $('button[lay-filter="dom_formSearchSubmit"]').click(function () {
+                    // 直接滚动到页面最下方
+                    $('html, body').scrollTop($(document).height());
                 });
-            } else if (dom_formSearch) {
-                $('button[lay-on="dom_formSearchExpandSearch"]').hide();
             }
         },
         /**

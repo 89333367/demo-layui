@@ -62,11 +62,7 @@ layui.define(['common'], function (exports) {
             table.reloadData('datatable', {
                 where: field
             });
-
-            // 直接滚动到页面最下方
-            $('html, body').scrollTop($(document).height());
         });
-        form.render();
 
         table.render({
             url: 'data/datatable.json', // 此处为静态模拟数据，实际使用时需换成真实接口
