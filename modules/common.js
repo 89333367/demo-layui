@@ -102,7 +102,7 @@ layui.define(function (exports) {
             }
         }, true);
     });
-    // 窗口大小变化后，重置表格的固定列属性
+    // 窗口大小变化后，重置表格的fixed属性
     $(window).resize(layui.debounce(function (e) {
         var dt = table.getOptions('datatable');
         if (dt) {
@@ -110,18 +110,50 @@ layui.define(function (exports) {
             $.each(dt.cols, function (i, colGroup) {
                 $.each(colGroup, function (ii, col) {
                     if (!lay.hasOwn(col, '_fixed')) {
-                        col._fixed = col.fixed;// 记录一下原来的固定属性值
+                        col._fixed = col.fixed;// 记录一下用户设置的fixed值
                     }
                     if (lay.hasOwn(col, 'fixed')) {
-                        col.fixed = $(window).width() > 768 ? col._fixed : false;// 窗口宽度大于768就使用固定值，否则即使用户设置了固定属性，也会被重置为null
+                        col.fixed = $(window).width() > 768 ? col._fixed : false;// 窗口宽度大于768就使用用户提供的fixed值，否则即使用户设置了fixed值，也会被重置为false
                     }
                 });
             });
             table.reload('datatable');
         }
-    }, 500));
+    }, 1000));
 
     var api = {
+        /**
+         * 渲染公共部分
+         * 1. 渲染面包屑
+         * 2. 渲染搜索表单
+         */
+        renderCommon: function () {
+            //只要页面有lay-filter="dom_breadcrumb"的面包屑，就会自动渲染
+            element.render('breadcrumb', 'dom_breadcrumb');
+
+            // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
+            var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
+            if (dom_formSearch && dom_formSearch.height() > 110) {
+                $('button[lay-on="dom_formSearchExpandSearch"]').show();
+
+                var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
+                searchFormItem0.addClass('css_hide-overflow-content');
+
+                util.on({
+                    'dom_formSearchExpandSearch': function () {
+                        searchFormItem0.toggleClass('css_hide-overflow-content');
+
+                        if (searchFormItem0.hasClass('css_hide-overflow-content')) {
+                            $(this).text('展开');
+                        } else {
+                            $(this).text('收缩');
+                        }
+                    }
+                });
+            } else if (dom_formSearch) {
+                $('button[lay-on="dom_formSearchExpandSearch"]').hide();
+            }
+        },
         /**
          * 获取模版渲染后的结果
          * @param {*} route 模版路由(传递 menu 就会去找 templates/menu.html)
@@ -129,7 +161,7 @@ layui.define(function (exports) {
          * @param {*} callback 回调函数，调用方接收渲染后的结果
          */
         renderTpl: function (route, data, callback) {
-            //console.debug('renderTpl参数', arguments);
+            console.debug('renderTpl参数', arguments);
             var tplUrl = 'templates/' + route.replace(/^\/+/, '') + '.html';
             console.debug('准备加载模版', tplUrl, data);
             $.get(tplUrl, function (tpl) {
@@ -138,8 +170,6 @@ layui.define(function (exports) {
                     console.debug('渲染后的结果', str);
 
                     callback(str);//将渲染后的结果返回给调用方
-
-                    element.render('breadcrumb', 'dom_breadcrumb');//只要页面有lay-filter="dom_breadcrumb"的面包屑，就会自动渲染
                 });
             });
         },
@@ -150,31 +180,12 @@ layui.define(function (exports) {
          * @param {*} callback 
          */
         renderBodyTpl: function (route, data, callback) {
+            var that = this;
+
             this.renderTpl(route, data, function (str) {
                 $('.css_body-content').html(str);
 
-                // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
-                var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
-                if (dom_formSearch && dom_formSearch.height() > 110) {
-                    $('button[lay-on="dom_formSearchExpandSearch"]').show();
-
-                    var searchFormItem0 = dom_formSearch.find('div.layui-form-item:eq(0)');
-                    searchFormItem0.addClass('css_hide-overflow-content');
-
-                    util.on({
-                        'dom_formSearchExpandSearch': function () {
-                            searchFormItem0.toggleClass('css_hide-overflow-content');
-
-                            if (searchFormItem0.hasClass('css_hide-overflow-content')) {
-                                $(this).text('展开');
-                            } else {
-                                $(this).text('收缩');
-                            }
-                        }
-                    });
-                } else if (dom_formSearch) {
-                    $('button[lay-on="dom_formSearchExpandSearch"]').hide();
-                }
+                that.renderCommon();
 
                 callback(str);//回调
             });
