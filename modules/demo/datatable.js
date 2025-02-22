@@ -65,7 +65,7 @@ layui.define(['common'], function (exports) {
         });
 
         table.render({
-            url: 'data/datatable.json', // 此处为静态模拟数据，实际使用时需换成真实接口
+            url: common.preUrl() + 'data/datatable.json', // 此处为静态模拟数据，实际使用时需换成真实接口
             method: 'get',
             cols: [[
                 { type: 'checkbox', fixed: 'left' },

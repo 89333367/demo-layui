@@ -18,7 +18,7 @@ layui.define(['common'], function (exports) {
     });
 
     // 动态加载左侧菜单
-    $.getJSON('data/menu.json', function (data) {
+    $.getJSON(common.preUrl() + 'data/menu.json', function (data) {
         common.renderTpl('menu', data, function (str) {
             var dom_leftMenu = $('ul[lay-filter="dom_leftMenu"]');
             dom_leftMenu.html(str);

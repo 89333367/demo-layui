@@ -65,7 +65,7 @@ layui.define(['common'], function (exports) {
         });
 
         table.render({
-            url: 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
+            url: common.preUrl() + 'data/users.json', // 此处为静态模拟数据，实际使用时需换成真实接口
             method: 'get',
             cols: [[
                 { field: 'id', minWidth: 80, title: 'ID', sort: true },
