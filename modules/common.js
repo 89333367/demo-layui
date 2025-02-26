@@ -144,9 +144,9 @@ layui.define(function (exports) {
                         dom_formSearchExpandSearch.click(function () {
                             searchFormItem0.toggleClass('css_hide-overflow-content');
                             if (searchFormItem0.hasClass('css_hide-overflow-content')) {
-                                $(this).text('展开');
+                                $(this).html('<i class="layui-icon layui-icon-down"></i>展开');
                             } else {
-                                $(this).text('收缩');
+                                $(this).html('<i class="layui-icon layui-icon-up"></i>收缩');
                             }
                         });
                     } else if (dom_formSearch) {
