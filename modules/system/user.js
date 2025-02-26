@@ -98,6 +98,14 @@ layui.define(['conf', 'common'], function (exports) {
                         //console.debug(obj); // 查看返回的对象成员
                         layer.open({
                             type: 1,
+                            area: ['auto', '100%'],
+                            maxWidth: $(window).width(),
+                            offset: 'r',
+                            anim: 'slideLeft', // 从右往左
+                            shade: [0.6, '#FFF'],
+                            shadeClose: true,
+                            resize: false,
+                            scrollbar: false,
                             title: '新增',
                             id: 'formData',
                             content: $('div[lay-filter="dom_formData"]'),

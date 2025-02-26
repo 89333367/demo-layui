@@ -1,49 +1,49 @@
 [
     {
         "title": "主页",
-        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-home'></i>",
+        "icon": "layui-icon-home",
         "child": [
             {
                 "title": "更新日志",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-list'></i>",
-                "href": "#/home/log"
+                "icon": "layui-icon-list",
+                "href": "/home/log"
             }
         ]
     },
     {
         "title": "系统管理",
-        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-set'></i>",
+        "icon": "layui-icon-set",
         "child": [
             {
                 "title": "用户管理",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-user'></i>",
-                "href": "#/system/user"
+                "icon": "layui-icon-user",
+                "href": "/system/user"
             },
             {
                 "title": "角色管理",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-vercode'></i>",
-                "href": "#/system/role"
+                "icon": "layui-icon-vercode",
+                "href": "/system/role"
             },
             {
-                "title": "权限管理",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-lock'></i>",
-                "href": "#/system/resource"
+                "title": "资源管理",
+                "icon": "layui-icon-lock",
+                "href": "/system/resource"
             }
         ]
     },
     {
         "title": "示例代码",
-        "iconDom": "<i class='layui-icon css_menu-icon layui-icon-read'></i>",
+        "icon": "layui-icon-read",
         "child": [
             {
                 "title": "仪表盘示例",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-github'></i>",
-                "href": "#/demo/dashboard"
+                "icon": "layui-icon-github",
+                "href": "/demo/dashboard"
             },
             {
                 "title": "数据表格示例",
-                "iconDom": "<i class='layui-icon css_menu-icon layui-icon-table'></i>",
-                "href": "#/demo/datatable"
+                "icon": "layui-icon-table",
+                "href": "/demo/datatable"
             }
         ]
     }

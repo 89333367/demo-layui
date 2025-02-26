@@ -1,14 +1,14 @@
 {{# layui.each(d, function(index, item){ }}
 <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">
-        {{- item.iconDom?item.iconDom:'' }}
+        <i class="layui-icon css_menu-icon {{= item.icon?item.icon:'' }}"></i>
         {{= item.title }}
     </a>
     <dl class="layui-nav-child">
         {{# layui.each(item.child, function(idx, itm){ }}
         <dd>
-            <a href="{{=itm.href}}">
-                {{- itm.iconDom?itm.iconDom:'' }}
+            <a href="#{{=itm.href}}">
+                <i class="layui-icon css_menu-icon {{= itm.icon?itm.icon:'' }} }}"></i>
                 {{= itm.title }}
             </a>
         </dd>
