@@ -127,12 +127,12 @@ layui.define(function (exports) {
             form.render();
 
             //只要页面有lay-filter="dom_breadcrumb"的面包屑，就会自动渲染
-            if ($('span[lay-filter="dom_breadcrumb"]')) {
+            if ($('span[lay-filter="dom_breadcrumb"]').length > 0) {
                 element.render('breadcrumb', 'dom_breadcrumb');
             }
 
             // 如果页面中有 dom_datatable 的表格，那么就会自动渲染搜索表单，并且点击查询按钮后，会自动滚动到页面最下方
-            if ($('table[lay-filter="dom_datatable"]')) {
+            if ($('table[lay-filter="dom_datatable"]').length > 0) {
                 // 如果查询表单过高，说明搜索项比较多，那么先隐藏溢出内容，显示展开按钮
                 var dom_formSearch = $('form[lay-filter="dom_formSearch"]');
                 var dom_formSearchExpandSearch = $('button[lay-on="dom_formSearchExpandSearch"]');
