@@ -93,7 +93,7 @@ layui.define(function (exports) {
     });
     // 窗口大小变化后，重置表格的fixed属性
     $(window).resize(layui.debounce(function (e) {
-        if ($('table[lay-filter="dom_datatable"]')) {
+        if ($('table[lay-filter="dom_datatable"]').length > 0) {
             console.debug('触发了窗口resize事件', '当前页面有dom_datatable', location.href);
             var dt = table.getOptions('datatable');
             if (dt) {
