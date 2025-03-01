@@ -7,6 +7,29 @@ layui.define(['conf', 'common'], function (exports) {
 
     var common = layui.common;
     var conf = layui.conf;
+    var device = layui.device();
+
+    /**
+     * 隐藏菜单
+     * - 左侧菜单折叠按钮
+     * - 窗口宽度小于768px时，自动隐藏菜单
+     */
+    var hideMenu = function () {
+        console.debug('隐藏菜单');
+        $('body').addClass('css_collapse');
+        $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+    };
+
+    /**
+     * 展示菜单
+     * - 左侧菜单折叠按钮
+     * - 窗口宽度大于768px时，自动展示菜单
+     */
+    var showMenu = function () {
+        console.debug('展示菜单');
+        $('body').removeClass('css_collapse');
+        $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
+    };
 
     // 绑定左侧菜单事件
     element.on('nav(dom_leftMenu)', function (elem) {
@@ -14,7 +37,11 @@ layui.define(['conf', 'common'], function (exports) {
         console.debug('点击了菜单', $(elem).text(), href);
         if (href !== 'javascript:;') {
             var url = layui.url(href);
-            layui.use(url.hash.href, layui.factory(url.hash.href));
+            layui.use(url.hash.href, layui.factory(url.hash.href));//动态加载模块
+
+            if (device.mobile) {//如果是移动设备，那么点击菜单后自动隐藏菜单
+                hideMenu();
+            }
         }
     });
 
@@ -51,9 +78,9 @@ layui.define(['conf', 'common'], function (exports) {
             console.debug('点击了菜单折叠按钮');
             $('body').toggleClass('css_collapse');
             if ($('body').hasClass('css_collapse')) {
-                $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+                hideMenu();
             } else {
-                $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
+                showMenu();
             }
         }
     });
@@ -62,11 +89,9 @@ layui.define(['conf', 'common'], function (exports) {
     var debounce = layui.debounce(function (e) {
         console.debug('触发窗口大小改变事件，需要重新判断是否展示菜单', '当前窗口宽度', $(window).width());
         if ($(window).width() <= 768) {
-            $('body').addClass('css_collapse');
-            $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+            hideMenu();
         } else {
-            $('body').removeClass('css_collapse');
-            $('li[lay-on="dom_leftMenuCollapse"]>i').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right');
+            showMenu();
         }
     }, 10);
     debounce();
